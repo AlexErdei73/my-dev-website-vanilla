@@ -1,3 +1,8 @@
+:root {
+  --primary-color: #07237e;
+  --primary-color-hover: #0a32b8;
+}
+
 body {
   margin: 0;
   background: whitesmoke;
@@ -26,7 +31,7 @@ nav a {
 nav li a {
   display: block;
   color: white;
-  background-color: blue;
+  background-color: var(--primary-color);
   width: 11em;
   text-align: center;
   padding: 0.7em 0.2em;
@@ -48,11 +53,19 @@ nav ul {
 
 nav .logo {
   font-size: 175%;
-  color: blue;
+  color: var(--primary-color);
   background-color: inherit;
   padding: 0.3em 0;
-  border: 0.15rem solid blue;
+  border: 0.15rem solid var(--primary-color);
   border-radius: 0.3em;
   width: 11rem;
   text-align: center;
+}
+
+nav li a:hover {
+  background-color: var(--primary-color-hover);
+}
+
+nav .logo:hover {
+  background-color: white;
 }
