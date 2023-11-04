@@ -1,4 +1,5 @@
 import { showMainElement } from "./components/navigationBar.js";
+import { initPosts } from "./components/postCards.js";
 import {
 	login,
 	updatePost,
@@ -11,7 +12,7 @@ import {
 	updatePostLikes,
 } from "./backend/backend.js";
 
-let posts = [
+export let posts = [
 	{
 		title: "...Loading",
 		author: {
@@ -23,7 +24,7 @@ let posts = [
 
 getPosts().then((json) => {
 	posts = json.posts;
-	console.log(posts);
+	initPosts(posts);
 });
 
 showMainElement();
