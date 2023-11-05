@@ -13,10 +13,10 @@ export function initPost(post) {
   const viewButton = postCardNode.querySelector("button.view");
 
   postTitleNode.textContent = post.title;
-  postAuthorNode.textContent = post.author.username;
-  numberOfLikesNode.textContent = post.likes.length;
-  createdNode.textContent = post.createdAt.slice(0, 10);
-  updatedNode.textContent = post.updatedAt.slice(0, 10);
+  postAuthorNode.textContent = `By ${post.author.username}`;
+  numberOfLikesNode.textContent = `Likes: ${post.likes.length}`;
+  createdNode.textContent = `Created: ${post.createdAt.slice(0, 10)}`;
+  updatedNode.textContent = `Updated: ${post.updatedAt.slice(0, 10)}`;
 
   viewButton.addEventListener("click", function () {
     alert("View Clicked!");
