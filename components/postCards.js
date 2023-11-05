@@ -9,7 +9,7 @@ export function initPosts() {
   posts.forEach((post, i) => {
     if (post.published) {
       const postNode = initPost(post);
-      node.setAttribute("data-postid", post._id);
+      postNode.setAttribute("data-postid", post._id);
       node.appendChild(postNode);
     }
   });

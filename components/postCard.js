@@ -1,4 +1,5 @@
 import { importTemp } from "../helper.js";
+import { viewPost } from "../index.js";
 
 export function initPost(post) {
   const postCardNode = importTemp(5);
@@ -18,8 +19,11 @@ export function initPost(post) {
   createdNode.textContent = `Created: ${post.createdAt.slice(0, 10)}`;
   updatedNode.textContent = `Updated: ${post.updatedAt.slice(0, 10)}`;
 
-  viewButton.addEventListener("click", function () {
-    alert("View Clicked!");
+  viewButton.addEventListener("click", function (event) {
+    const buttonNode = event.target;
+    const postID =
+      buttonNode.parentNode.parentNode.parentNode.getAttribute("data-postid");
+    viewPost(postID);
   });
 
   return postCardNode;
