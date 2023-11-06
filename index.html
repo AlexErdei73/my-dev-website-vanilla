@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles.css" />
+    <!-- Prism CSS -->
+    <link rel="stylesheet" href="./prism.css" />
     <script type="module" src="./index.js"></script>
     <title>home page - My Dev Website Vanilla</title>
   </head>
@@ -57,6 +59,10 @@
     <template>
       <div class="post">
         <h1>Post</h1>
+        <pre>
+          <code class="language-html">
+          </code>
+        </pre>
       </div>
     </template>
 
@@ -73,35 +79,37 @@
         <h1>Sign Up</h1>
       </div>
     </template>
+
+    <!-- Card 5-->
+    <template>
+      <div class="card">
+        <div class="head">
+          <div class="left"></div>
+          <div class="right"></div>
+        </div>
+        <div class="body"></div>
+        <div class="footer">
+          <div class="left"></div>
+          <div class="right"></div>
+        </div>
+      </div>
+    </template>
+
+    <!-- PostCard Body 6-->
+    <template>
+      <div class="body">
+        <div class="title">
+          <h2></h2>
+        </div>
+        <div class="buttons">
+          <button class="view" type="button">View</button>
+          <button class="like hidden" type="button"></button>
+          <button class="publish hidden" type="button"></button>
+          <button class="delete hidden" type="button">Delete</button>
+        </div>
+      </div>
+    </template>
+    <!-- PrismJS -->
+    <script src="./prism.js"></script>
   </body>
-
-  <!-- Card 5-->
-  <template>
-    <div class="card">
-      <div class="head">
-        <div class="left"></div>
-        <div class="right"></div>
-      </div>
-      <div class="body"></div>
-      <div class="footer">
-        <div class="left"></div>
-        <div class="right"></div>
-      </div>
-    </div>
-  </template>
-
-  <!-- PostCard Body 6-->
-  <template>
-    <div class="body">
-      <div class="title">
-        <h2></h2>
-      </div>
-      <div class="buttons">
-        <button class="view" type="button">View</button>
-        <button class="like hidden" type="button"></button>
-        <button class="publish hidden" type="button"></button>
-        <button class="delete hidden" type="button">Delete</button>
-      </div>
-    </div>
-  </template>
 </html>
