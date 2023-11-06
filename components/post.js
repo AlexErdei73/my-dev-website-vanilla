@@ -1,14 +1,21 @@
-import { escapeHTML } from "../helper.js";
+import { initBlock } from "./block.js";
+import { importTemp } from "../helper.js";
+import { prism } from "../prism.js";
 
-export function initPost(postID) {
-  const postNode = document.querySelector(".post");
+export function initPost(post) {
+	const postNode = document.querySelector(".post");
+	const oldNode = postNode.querySelector("div");
+	const node = document.createElement("div");
+	const titleNode = importTemp(7);
+	titleNode.textContent = post.title;
+	node.appendChild(titleNode);
 
-  const codeNode = postNode.querySelector("code");
-  codeNode.textContent = "<h1>This is a HTML element!</h1>";
+	post.content.forEach((block) => {
+		const blockNode = initBlock(block);
+		node.appendChild(blockNode);
+	});
 
-  const oldNode = postNode.querySelector("div");
-  const node = document.createElement("div");
-  node.textContent = `Post ID: ${postID}`;
-  if (oldNode) postNode.replaceChild(node, oldNode);
-  else postNode.appendChild(node);
+	if (oldNode) postNode.replaceChild(node, oldNode);
+	else postNode.appendChild(node);
+	prism();
 }

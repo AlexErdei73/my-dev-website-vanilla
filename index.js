@@ -23,19 +23,24 @@ export let posts = [
   },
 ];
 
+function getPost(_postID) {
+  return posts.filter((post) => post._id === _postID)[0];
+}
+
 const aboutID = "64b3b9fc11a583b26b48b476";
 let postID = aboutID;
-initPost(postID);
+initPost(posts[0]);
 
 export function viewPost(_postID) {
   if (_postID) postID = _postID;
-  initPost(postID);
+  initPost(getPost(postID));
   window.location.href = "#post";
 }
 
 getPosts().then((json) => {
   posts = json.posts;
   initPosts(posts);
+  initPost(getPost(postID));
   console.log(posts);
 });
 
