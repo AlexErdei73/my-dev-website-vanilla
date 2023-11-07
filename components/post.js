@@ -2,8 +2,9 @@ import { initBlock } from "./block.js";
 import { importTemp } from "../helper.js";
 import { prism } from "../prism.js";
 
-export function initPost(post) {
-	const postNode = document.querySelector(".post");
+export function initPost(post, parentNode) {
+	let postNode = parentNode;
+	if (!parentNode) postNode = document.querySelector(".post");
 	const oldNode = postNode.querySelector("div");
 	const node = document.createElement("div");
 	const titleNode = importTemp(7);
