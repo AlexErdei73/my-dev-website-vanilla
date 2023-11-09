@@ -1,4 +1,5 @@
 import { initBlock } from "./block.js";
+import { initAuthor } from "./author.js";
 import { importTemp } from "../helper.js";
 import { prism } from "../prism.js";
 
@@ -16,6 +17,11 @@ export function initPost(post, parentNode) {
     const blockNode = initBlock(block);
     node.appendChild(blockNode);
   });
+
+  const oldAuthorNode = postNode.querySelector("article.author");
+  const authorNode = initAuthor(post.author);
+  if (oldAuthorNode) postNode.replaceChild(authorNode, oldAuthorNode);
+  else postNode.appendChild(authorNode);
 
   if (oldNode) postNode.replaceChild(node, oldNode);
   else postNode.appendChild(node);
