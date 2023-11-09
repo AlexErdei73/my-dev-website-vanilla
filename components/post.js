@@ -3,20 +3,21 @@ import { importTemp } from "../helper.js";
 import { prism } from "../prism.js";
 
 export function initPost(post, parentNode) {
-	let postNode = parentNode;
-	if (!parentNode) postNode = document.querySelector(".post");
-	const oldNode = postNode.querySelector("div");
-	const node = document.createElement("div");
-	const titleNode = importTemp(7);
-	titleNode.textContent = post.title;
-	node.appendChild(titleNode);
+  let postNode = parentNode;
+  if (!parentNode) postNode = document.querySelector(".post");
+  const oldNode = postNode.querySelector("article.article");
+  const node = document.createElement("article");
+  node.classList.add("article");
+  const titleNode = importTemp(7);
+  titleNode.textContent = post.title;
+  node.appendChild(titleNode);
 
-	post.content.forEach((block) => {
-		const blockNode = initBlock(block);
-		node.appendChild(blockNode);
-	});
+  post.content.forEach((block) => {
+    const blockNode = initBlock(block);
+    node.appendChild(blockNode);
+  });
 
-	if (oldNode) postNode.replaceChild(node, oldNode);
-	else postNode.appendChild(node);
-	prism();
+  if (oldNode) postNode.replaceChild(node, oldNode);
+  else postNode.appendChild(node);
+  prism();
 }

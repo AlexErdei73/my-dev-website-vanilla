@@ -196,6 +196,27 @@ button:hover {
   width: 4.7em;
 }
 
+/* post */
+.post {
+  padding: 0 0.625em 0.625em;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.625em;
+}
+
+.post h1 {
+  margin: 0;
+  font-size: xx-large;
+}
+
+.post .article p,
+.post .article pre,
+.post .article h2 {
+  margin: 0.625em 0 0 0;
+}
+
 @media (max-height: 25em) {
   nav {
     width: 100%;
