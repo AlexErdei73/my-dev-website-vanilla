@@ -36,6 +36,7 @@ nav {
   width: 16em;
   height: 100vh;
   background-color: lightgray;
+  border-bottom: 2px solid white;
 }
 
 nav a {
@@ -197,7 +198,8 @@ button:hover {
 }
 
 /* post */
-.post {
+.post,
+.about {
   padding: 0 0.625em 0.625em;
   display: flex;
   flex-direction: row-reverse;
@@ -206,15 +208,37 @@ button:hover {
   gap: 0.625em;
 }
 
-.post h1 {
+.post h1,
+.about h1 {
   margin: 0;
   font-size: xx-large;
 }
 
 .post .article p,
 .post .article pre,
-.post .article h2 {
+.post .article h2,
+.about .article p,
+.about .article pre,
+.about .article h2 {
   margin: 0.625em 0 0 0;
+  max-width: 43.75em;
+}
+
+.post article {
+  max-width: 100%;
+}
+
+/* Author */
+article.author {
+  background-color: lightgray;
+  padding: 5em;
+  flex: 1 1 0;
+}
+
+.author h2,
+.author h3,
+.author p {
+  margin: 0;
 }
 
 @media (max-height: 25em) {
@@ -298,5 +322,8 @@ button:hover {
   }
   .card .footer .right {
     display: none;
+  }
+  article.author {
+    padding: 2em;
   }
 }
