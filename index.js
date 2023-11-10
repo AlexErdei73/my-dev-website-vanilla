@@ -25,7 +25,7 @@ export let posts = [
 	},
 ];
 
-const loginData = {
+let loginData = {
 	success: false,
 	user: {
 		username: "",
@@ -62,5 +62,26 @@ getPosts().then((json) => {
 	initAboutPost(getPost(aboutID));
 	console.log(posts);
 });
+
+export async function submitLogin({ username, password }) {
+	try {
+		const response = await login(username, password);
+		if (response.success) {
+			//user logged in successfully
+			loginData = response;
+			loginData.user.password = ""; //Do not store password as it is sensitive information!!!
+			//Store newLoginState, which contains the token, in localStorage
+			localStorage.setItem("loginData", JSON.stringify(loginData));
+		} else {
+			loginData.user.username = username;
+			loginData.user.password = password;
+			loginData.msg = response.msg;
+		}
+		console.log(loginData);
+	} catch (error) {
+		console.error(error);
+		loginData.msg = error.message;
+	}
+}
 
 showMainElement();
