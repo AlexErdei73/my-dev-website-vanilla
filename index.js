@@ -13,6 +13,7 @@ import {
 	updatePostLikes,
 } from "./backend/backend.js";
 import { initAboutPost } from "./components/about.js";
+import { initLogin } from "./components/login.js";
 
 export let posts = [
 	{
@@ -24,6 +25,20 @@ export let posts = [
 	},
 ];
 
+const loginData = {
+	success: false,
+	user: {
+		username: "",
+		password: "",
+		isAdmin: false,
+		name: "",
+		jobTitle: "",
+		bio: "",
+	},
+	token: "",
+	msg: "",
+};
+
 function getPost(_postID) {
 	return posts.filter((post) => post._id === _postID)[0];
 }
@@ -32,6 +47,7 @@ const aboutID = "64b3b9fc11a583b26b48b476";
 let postID = aboutID;
 initPost(posts[0]);
 initAboutPost(posts[0]);
+initLogin(loginData);
 
 export function viewPost(_postID) {
 	if (_postID) postID = _postID;
