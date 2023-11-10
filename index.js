@@ -76,11 +76,13 @@ export async function submitLogin({ username, password }) {
 			loginData.user.username = username;
 			loginData.user.password = password;
 			loginData.msg = response.msg;
+			initLogin(loginData);
 		}
 		console.log(loginData);
 	} catch (error) {
 		console.error(error);
 		loginData.msg = error.message;
+		initLogin(loginData);
 	}
 }
 

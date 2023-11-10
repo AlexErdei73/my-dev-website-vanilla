@@ -15,7 +15,7 @@ export function initLogin(loginData) {
 		usernameInput.value = username;
 		passwordInput.value = password;
 		if (msg) {
-			msgNode = importTemp(13); //Error Message
+			const msgNode = importTemp(13); //Error Message
 			msgNode.textContent = msg;
 			node.appendChild(msgNode);
 		}
