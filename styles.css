@@ -254,15 +254,15 @@ article.author {
 .login input {
 	border-color: var(--primary-color);
 	border-radius: 0.3em;
-	height: 1.6em;
+	height: 1.6rem;
 	outline: none;
-	width: 22em;
+	width: 22rem;
 	max-width: 90%;
-	margin: 0 auto 0.625em;
+	margin: 0 auto 0.625rem;
 }
 
 .login button {
-	padding: 0.625em 1.25em;
+	padding: 0.625rem 1.25rem;
 }
 
 .login h1 {
@@ -276,6 +276,10 @@ article.author {
 	padding: 0.3em;
 	border: 0.0625em solid red;
 	border-radius: 0.3em;
+}
+
+.login .error-msg {
+	width: 100%;
 }
 
 @media (max-height: 25em) {
@@ -362,6 +366,9 @@ article.author {
 	}
 	article.author {
 		padding: 2em;
+	}
+	.login {
+		width: calc(100% - 1.3em);
 	}
 }
 
