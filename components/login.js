@@ -23,13 +23,13 @@ export function initLogin(loginData) {
 	const oldNode = loginNode.childNodes[0];
 	let node;
 	if (!success) {
-		node = importTemp(12); //Login Form
+		node = importTemp(13); //Login Form
 		const usernameInput = node.querySelector("#username");
 		const passwordInput = node.querySelector("#password");
 		usernameInput.value = username;
 		passwordInput.value = password;
 		if (msg) {
-			const msgNode = importTemp(13); //Error Message
+			const msgNode = importTemp(14); //Error Message
 			msgNode.textContent = msg;
 			node.appendChild(msgNode);
 		}
@@ -40,7 +40,7 @@ export function initLogin(loginData) {
 			submitLogin({ username, password });
 		});
 	} else {
-		node = importTemp(14); // Logout Component
+		node = importTemp(15); // Logout Component
 		const outputNode = node.querySelector("h1 output");
 		outputNode.textContent = username;
 		const userPostsNode = node.querySelector(".user-posts");
