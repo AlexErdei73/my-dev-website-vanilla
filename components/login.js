@@ -1,5 +1,11 @@
 import { importTemp } from "../helper.js";
 import { submitLogin } from "../index.js";
+import { initPosts } from "./postCards.js";
+import { posts } from "../index.js";
+
+function getUserPosts(posts, userID) {
+	return posts.filter((post) => post.author._id === userID);
+}
 
 export function initLogin(loginData) {
 	const { success, user, msg } = loginData;
@@ -25,7 +31,11 @@ export function initLogin(loginData) {
 			password = passwordInput.value;
 			submitLogin({ username, password });
 		});
-		if (!oldNode) loginNode.appendChild(node);
-		else loginNode.replaceChild(node, oldNode);
+	} else {
+		node = importTemp(14); // Logout Component
+		const userPostsNode = node.querySelector(".user-posts");
+		initPosts(getUserPosts(posts, user._id), userPostsNode);
 	}
+	if (!oldNode) loginNode.appendChild(node);
+	else loginNode.replaceChild(node, oldNode);
 }

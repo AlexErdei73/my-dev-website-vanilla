@@ -43,6 +43,10 @@ function getPost(_postID) {
 	return posts.filter((post) => post._id === _postID)[0];
 }
 
+function getPublishedPosts() {
+	return posts.filter((post) => post.published);
+}
+
 const aboutID = "64b3b9fc11a583b26b48b476";
 let postID = aboutID;
 initPost(posts[0]);
@@ -57,7 +61,7 @@ export function viewPost(_postID) {
 
 getPosts().then((json) => {
 	posts = json.posts;
-	initPosts(posts);
+	initPosts(getPublishedPosts());
 	initPost(getPost(postID));
 	initAboutPost(getPost(aboutID));
 	console.log(posts);
@@ -76,14 +80,12 @@ export async function submitLogin({ username, password }) {
 			loginData.user.username = username;
 			loginData.user.password = password;
 			loginData.msg = response.msg;
-			initLogin(loginData);
 		}
-		console.log(loginData);
 	} catch (error) {
 		console.error(error);
 		loginData.msg = error.message;
-		initLogin(loginData);
 	}
+	initLogin(loginData);
 }
 
 showMainElement();
