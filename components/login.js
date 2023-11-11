@@ -7,6 +7,14 @@ function getUserPosts(posts, userID) {
 	return posts.filter((post) => post.author._id === userID);
 }
 
+function logout(loginData) {
+	loginData.success = false;
+	loginData.user.username = "";
+	loginData.user.password = "";
+	localStorage.removeItem("loginData");
+	initLogin(loginData);
+}
+
 export function initLogin(loginData) {
 	const { success, user, msg } = loginData;
 	let { username, password } = user;
@@ -37,6 +45,8 @@ export function initLogin(loginData) {
 		outputNode.textContent = username;
 		const userPostsNode = node.querySelector(".user-posts");
 		initPosts(getUserPosts(posts, user._id), userPostsNode);
+		const logoutButton = node.querySelector("button.logout");
+		logoutButton.addEventListener("click", () => logout(loginData));
 	}
 	if (!oldNode) loginNode.appendChild(node);
 	else loginNode.replaceChild(node, oldNode);
