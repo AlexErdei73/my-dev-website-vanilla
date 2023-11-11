@@ -51,7 +51,8 @@ const aboutID = "64b3b9fc11a583b26b48b476";
 let postID = aboutID;
 initPost(posts[0]);
 initAboutPost(posts[0]);
-initLogin(loginData);
+const storageItem = localStorage.getItem("loginData");
+if (storageItem) loginData = JSON.parse(storageItem);
 
 export function viewPost(_postID) {
 	if (_postID) postID = _postID;
@@ -64,6 +65,7 @@ getPosts().then((json) => {
 	initPosts(getPublishedPosts());
 	initPost(getPost(postID));
 	initAboutPost(getPost(aboutID));
+	initLogin(loginData);
 	console.log(posts);
 });
 

@@ -33,6 +33,8 @@ export function initLogin(loginData) {
 		});
 	} else {
 		node = importTemp(14); // Logout Component
+		const outputNode = node.querySelector("h1 output");
+		outputNode.textContent = username;
 		const userPostsNode = node.querySelector(".user-posts");
 		initPosts(getUserPosts(posts, user._id), userPostsNode);
 	}
