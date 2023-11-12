@@ -14,6 +14,7 @@ import {
 } from "./backend/backend.js";
 import { initAboutPost } from "./components/about.js";
 import { initLogin } from "./components/login.js";
+import { initNewPost } from "./newPost.js";
 
 export let posts = [
 	{
@@ -66,8 +67,24 @@ getPosts().then((json) => {
 	initPost(getPost(postID));
 	initAboutPost(getPost(aboutID));
 	initLogin(loginData);
+	initNewPost(createPost);
 	console.log(posts);
 });
+
+async function createPost(post) {
+	console.log(post);
+	post.author = loginData.user._id;
+	let msg = "";
+	try {
+		const response = await postPosts(post, loginData.token);
+		console.log(response);
+		// The next line will deal with unauthorized access when response do not have post
+		if (!response.post) msg = "Unauthorized";
+	} catch (error) {
+		msg = error.message;
+	}
+	return msg;
+}
 
 export async function submitLogin({ username, password }) {
 	try {
