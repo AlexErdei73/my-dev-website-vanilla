@@ -244,7 +244,7 @@ article.author {
 }
 
 /* Login Form */
-.login form {
+form {
 	padding: 0.625em;
 	display: flex;
 	flex-direction: column;
@@ -253,21 +253,31 @@ article.author {
 	max-width: 100%;
 }
 
-.login input {
+input {
 	border-color: var(--primary-color);
 	border-radius: 0.3em;
 	height: 1.6rem;
 	outline: none;
+}
+
+input:focus {
+	box-shadow: 0 0 0.3rem 0.125rem var(--primary-color-hover);
+}
+
+.login input,
+.newpost input {
 	width: 22rem;
 	max-width: 90%;
 	margin: 0 auto 0.625rem;
 }
 
-.login button {
+.login button,
+.newpost button {
 	padding: 0.625rem 1.25rem;
 }
 
-.login h1 {
+.login h1,
+.newpost h1 {
 	margin: 0 0 1.34rem;
 }
 
