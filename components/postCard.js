@@ -1,7 +1,7 @@
 import { importTemp } from "../helper.js";
-import { viewPost } from "../index.js";
+import { viewPost, loginData } from "../index.js";
 
-export function initPost(post) {
+export function initPost(post, edit) {
 	const postCardNode = importTemp(6);
 	const postCardBody = importTemp(7);
 	const cardBody = postCardNode.querySelector(".body");
@@ -25,6 +25,21 @@ export function initPost(post) {
 			buttonNode.parentNode.parentNode.parentNode.getAttribute("data-postid");
 		viewPost(postID);
 	});
+
+	if (edit) {
+		const publishButton = postCardNode.querySelector("button.publish");
+		const deleteButton = postCardNode.querySelector("button.delete");
+		publishButton.classList.remove("hidden");
+		publishButton.textContent = post.published ? "Hide" : "Publish";
+		deleteButton.classList.remove("hidden");
+	}
+
+	if (!edit && loginData.success) {
+		const likeButton = postCardNode.querySelector("button.like");
+		likeButton.textContent =
+			post.likes.indexOf(loginData.user._id) === -1 ? "Like" : "Unlike";
+		likeButton.classList.remove("hidden");
+	}
 
 	return postCardNode;
 }

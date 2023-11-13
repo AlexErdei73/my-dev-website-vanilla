@@ -322,6 +322,17 @@ input:focus {
 	background-color: var(--primary-color-hover);
 }
 
+button.delete {
+	background-color: pink;
+	color: darkred;
+	border: 0.0625rem solid darkred;
+}
+
+button.delete:hover {
+	color: red;
+	border-color: red;
+}
+
 @media (max-height: 25em) {
 	nav {
 		width: 100%;

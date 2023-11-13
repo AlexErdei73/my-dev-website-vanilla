@@ -26,7 +26,7 @@ export let posts = [
 	},
 ];
 
-let loginData = {
+export let loginData = {
 	success: false,
 	user: {
 		username: "",
