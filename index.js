@@ -15,7 +15,7 @@ import {
 import { initAboutPost } from "./components/about.js";
 import { initLogin } from "./components/login.js";
 import { initNewPost } from "./newPost.js";
-import { initModal, showModal, closeModal } from "./components/modal.js";
+import { initModal, closeModal, showErrorMsg } from "./components/modal.js";
 
 export let posts = [
   {
@@ -49,6 +49,23 @@ function getPublishedPosts() {
   return posts.filter((post) => post.published);
 }
 
+async function erasePost(post) {
+  try {
+    const response = await deletePosts(post, loginData.token);
+    if (!response.success) {
+      showErrorMsg(response.errors[0].msg);
+    } else {
+      closeModal();
+      const postIndex = posts.findIndex((post) => post._id === postID);
+      posts.splice(postIndex, 1);
+      initPosts(posts);
+      initLogin(loginData);
+    }
+  } catch (error) {
+    showErrorMsg(error.message);
+  }
+}
+
 const aboutID = "64b3b9fc11a583b26b48b476";
 let postID = aboutID;
 initPost(posts[0]);
@@ -57,8 +74,9 @@ initModal({
   variant: "danger",
   header: "Danger!",
   footer: "Permanent data loss",
+  onDelete: (postID) => erasePost(getPost(postID)),
+  onCancel: closeModal,
 });
-showModal();
 const storageItem = localStorage.getItem("loginData");
 if (storageItem) loginData = JSON.parse(storageItem);
 

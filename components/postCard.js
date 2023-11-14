@@ -1,5 +1,6 @@
 import { importTemp } from "../helper.js";
 import { viewPost, loginData } from "../index.js";
+import { showModal } from "./modal.js";
 
 export function initPost(post, edit) {
   const postCardNode = importTemp(6);
@@ -29,6 +30,12 @@ export function initPost(post, edit) {
   if (edit) {
     const publishButton = postCardNode.querySelector("button.publish");
     const deleteButton = postCardNode.querySelector("button.delete");
+    deleteButton.addEventListener("click", function (event) {
+      const buttonNode = event.target;
+      const postID =
+        buttonNode.parentNode.parentNode.parentNode.getAttribute("data-postid");
+      showModal(postID);
+    });
     publishButton.classList.remove("hidden");
     publishButton.textContent = post.published ? "Hide" : "Publish";
     deleteButton.classList.remove("hidden");
