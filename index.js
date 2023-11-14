@@ -15,6 +15,7 @@ import {
 import { initAboutPost } from "./components/about.js";
 import { initLogin } from "./components/login.js";
 import { initNewPost } from "./newPost.js";
+import { initModal, showModal, closeModal } from "./components/modal.js";
 
 export let posts = [
   {
@@ -52,6 +53,12 @@ const aboutID = "64b3b9fc11a583b26b48b476";
 let postID = aboutID;
 initPost(posts[0]);
 initAboutPost(posts[0]);
+initModal({
+  variant: "danger",
+  header: "Danger!",
+  footer: "Permanent data loss",
+});
+showModal();
 const storageItem = localStorage.getItem("loginData");
 if (storageItem) loginData = JSON.parse(storageItem);
 

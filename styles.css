@@ -121,9 +121,10 @@ main h1 {
 }
 
 .card .head {
-  padding: 0.4em;
+  padding: 0 0.4em;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 1.8em;
   color: white;
   background-color: var(--primary-color);
@@ -136,9 +137,10 @@ main h1 {
 }
 
 .card .footer {
-  padding: 0.4em;
+  padding: 0 0.4em;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 1.8em;
   background-color: rgb(107, 107, 107);
   color: skyblue;
@@ -332,6 +334,44 @@ button.delete {
 button.delete:hover {
   color: red;
   border-color: red;
+}
+
+/* modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.danger .head {
+  background-color: darkred;
+}
+
+.danger:hover .head {
+  background-color: red;
+}
+
+.danger .footer {
+  background-color: pink;
+  border: 0.0625em solid darkred;
+  color: darkred;
+}
+
+.danger:hover .footer {
+  background-color: pink;
+  border: 0.0625em solid red;
+  color: red;
 }
 
 @media (max-height: 25em) {
