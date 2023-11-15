@@ -6,6 +6,7 @@ export function initPosts(posts, parentNode = null) {
 		parentNode = document.querySelector(".home");
 		edit = false;
 	}
+	const oldNode = parentNode.querySelector(".posts");
 	const node = document.createElement("div");
 	node.classList.add("posts");
 
@@ -14,5 +15,6 @@ export function initPosts(posts, parentNode = null) {
 		postNode.setAttribute("data-postid", post._id);
 		node.appendChild(postNode);
 	});
-	parentNode.appendChild(node);
+	if (!oldNode) parentNode.appendChild(node);
+	else parentNode.replaceChild(node, oldNode);
 }
