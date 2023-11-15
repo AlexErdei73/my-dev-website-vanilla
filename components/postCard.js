@@ -2,6 +2,13 @@ import { importTemp } from "../helper.js";
 import { viewPost, loginData } from "../index.js";
 import { showModal } from "./modal.js";
 
+function handleClickDelete(event) {
+	const buttonNode = event.target;
+	const postID =
+		buttonNode.parentNode.parentNode.parentNode.getAttribute("data-postid");
+	showModal(postID);
+}
+
 export function initPost(post, edit) {
 	const postCardNode = importTemp(6);
 	const postCardBody = importTemp(7);
@@ -30,12 +37,7 @@ export function initPost(post, edit) {
 	if (edit) {
 		const publishButton = postCardNode.querySelector("button.publish");
 		const deleteButton = postCardNode.querySelector("button.delete");
-		deleteButton.addEventListener("click", function (event) {
-			const buttonNode = event.target;
-			const postID =
-				buttonNode.parentNode.parentNode.parentNode.getAttribute("data-postid");
-			showModal(postID);
-		});
+		deleteButton.addEventListener("click", handleClickDelete);
 		publishButton.classList.remove("hidden");
 		publishButton.textContent = post.published ? "Hide" : "Publish";
 		deleteButton.classList.remove("hidden");
@@ -46,6 +48,11 @@ export function initPost(post, edit) {
 		likeButton.textContent =
 			post.likes.indexOf(loginData.user._id) === -1 ? "Like" : "Unlike";
 		likeButton.classList.remove("hidden");
+		if (loginData.user.isAdmin) {
+			const deleteButton = postCardNode.querySelector("button.delete");
+			deleteButton.addEventListener("click", handleClickDelete);
+			deleteButton.classList.remove("hidden");
+		}
 	}
 
 	postCardNode.show();

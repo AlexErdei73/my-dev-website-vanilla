@@ -58,7 +58,7 @@ async function erasePost(post) {
 			closeModal();
 			const postIndex = posts.findIndex((post) => post._id === postID);
 			posts.splice(postIndex, 1);
-			initPosts(getPublishedPosts(posts));
+			initPosts(getPublishedPosts());
 			initLogin(loginData);
 		}
 	} catch (error) {
@@ -134,6 +134,7 @@ export async function submitLogin({ username, password }) {
 		loginData.msg = error.message;
 	}
 	initLogin(loginData);
+	initPosts(getPublishedPosts());
 }
 
 showMainElement();
