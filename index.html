@@ -1,190 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="./styles.css" />
-		<!-- Prism CSS -->
-		<link rel="stylesheet" href="./prism.css" />
-		<script type="module" src="./index.js"></script>
-		<title>home page - My Dev Website Vanilla</title>
-	</head>
-	<body>
-		<header>
-			<div
-				id="page-title-live-region"
-				class="visually-hidden"
-				aria-live="polite"
-			></div>
-		</header>
-		<nav>
-			<ul>
-				<li>
-					<a class="logo" href="/my-dev-website-vanilla">Alex73 DEV</a>
-				</li>
-				<li>
-					<a href="#about">About</a>
-				</li>
-				<li>
-					<a href="#home">Home</a>
-				</li>
-				<li>
-					<a href="#post">Post</a>
-				</li>
-				<li>
-					<a href="#login">Login</a>
-				</li>
-				<li>
-					<a href="#signup">Signup</a>
-				</li>
-			</ul>
-		</nav>
-		<main></main>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <!-- Prism CSS -->
+    <link rel="stylesheet" href="./prism.css" />
+    <script type="module" src="./index.js"></script>
+    <title>home page - My Dev Website Vanilla</title>
+  </head>
+  <body>
+    <header>
+      <div
+        id="page-title-live-region"
+        class="visually-hidden"
+        aria-live="polite"
+      ></div>
+    </header>
+    <nav>
+      <ul>
+        <li>
+          <a class="logo" href="/my-dev-website-vanilla">Alex73 DEV</a>
+        </li>
+        <li>
+          <a href="#about">About</a>
+        </li>
+        <li>
+          <a href="#home">Home</a>
+        </li>
+        <li>
+          <a href="#post">Post</a>
+        </li>
+        <li>
+          <a href="#login">Login</a>
+        </li>
+        <li>
+          <a href="#signup">Signup</a>
+        </li>
+      </ul>
+    </nav>
+    <main></main>
 
-		<div class="modal card"></div>
+    <div class="modal card"></div>
 
-		<!-- About 0-->
-		<template>
-			<div class="about"></div>
-		</template>
+    <!-- About 0-->
+    <template>
+      <div class="about"></div>
+    </template>
 
-		<!-- Home 1-->
-		<template>
-			<div class="home">
-				<h1>Posts</h1>
-			</div>
-		</template>
+    <!-- Home 1-->
+    <template>
+      <div class="home">
+        <h1>Posts</h1>
+      </div>
+    </template>
 
-		<!-- Post 2-->
-		<template>
-			<div class="post"></div>
-		</template>
+    <!-- Post 2-->
+    <template>
+      <div class="post"></div>
+    </template>
 
-		<!-- Login 3-->
-		<template>
-			<div class="login"></div>
-		</template>
+    <!-- Login 3-->
+    <template>
+      <div class="login"></div>
+    </template>
 
-		<!-- Signup 4-->
-		<template>
-			<div class="signup">
-				<h1>Sign Up</h1>
-			</div>
-		</template>
+    <!-- Signup 4-->
+    <template>
+      <div class="signup">
+        <h1>Sign Up</h1>
+      </div>
+    </template>
 
-		<!-- New Post 5 -->
-		<template>
-			<div class="newpost"></div>
-		</template>
+    <!-- New Post 5 -->
+    <template>
+      <div class="newpost"></div>
+    </template>
 
-		<!-- Card 6 -->
-		<template>
-			<dialog class="card">
-				<div class="head">
-					<div class="left"></div>
-					<div class="right"></div>
-				</div>
-				<div class="body"></div>
-				<div class="footer">
-					<div class="left"></div>
-					<div class="right"></div>
-				</div>
-			</dialog>
-		</template>
+    <!-- Card 6 -->
+    <template>
+      <dialog class="card">
+        <div class="head">
+          <div class="left"></div>
+          <div class="right"></div>
+        </div>
+        <div class="body"></div>
+        <div class="footer">
+          <div class="left"></div>
+          <div class="right"></div>
+        </div>
+      </dialog>
+    </template>
 
-		<!-- PostCard Body 7 -->
-		<template>
-			<div class="body">
-				<div class="title">
-					<h2></h2>
-				</div>
-				<div class="buttons">
-					<button class="view" type="button">View</button>
-					<button class="like hidden" type="button"></button>
-					<button class="publish hidden" type="button"></button>
-					<button class="delete hidden" type="button">Delete</button>
-				</div>
-			</div>
-		</template>
+    <!-- PostCard Body 7 -->
+    <template>
+      <div class="body">
+        <div class="title">
+          <h2></h2>
+        </div>
+        <div class="buttons">
+          <button class="view" type="button">View</button>
+          <button class="like hidden" type="button"></button>
+          <button class="publish hidden" type="button"></button>
+          <button class="delete hidden" type="button">Delete</button>
+        </div>
+      </div>
+    </template>
 
-		<!-- Title 8 -->
-		<template>
-			<h1></h1>
-		</template>
+    <!-- Title 8 -->
+    <template>
+      <h1></h1>
+    </template>
 
-		<!-- Block Paragraph 9 -->
-		<template>
-			<p></p>
-		</template>
+    <!-- Block Paragraph 9 -->
+    <template>
+      <p></p>
+    </template>
 
-		<!-- Block Subtitle 10 -->
-		<template>
-			<h2></h2>
-		</template>
+    <!-- Block Subtitle 10 -->
+    <template>
+      <h2></h2>
+    </template>
 
-		<!-- Block Code 11 -->
-		<template>
-			<pre><code></code></pre>
-		</template>
+    <!-- Block Code 11 -->
+    <template>
+      <pre><code></code></pre>
+    </template>
 
-		<!-- Author 12 -->
-		<template>
-			<article class="author">
-				<h2 class="name"></h2>
-				<h3 class="job"></h3>
-				<p class="bio"></p>
-			</article>
-		</template>
+    <!-- Author 12 -->
+    <template>
+      <article class="author">
+        <h2 class="name"></h2>
+        <h3 class="job"></h3>
+        <p class="bio"></p>
+      </article>
+    </template>
 
-		<!-- Login Form 13 -->
-		<template>
-			<form validate="true">
-				<h1>Login</h1>
-				<label htmlFor="username">Username*</label>
-				<input type="text" id="username" required />
-				<label htmlFor="password">Password*</label>
-				<input type="text" id="password" required />
-				<button type="submit">Login</button>
-			</form>
-		</template>
+    <!-- Login Form 13 -->
+    <template>
+      <form validate="true">
+        <h1>Login</h1>
+        <label htmlFor="username">Username*</label>
+        <input type="text" id="username" required />
+        <label htmlFor="password">Password*</label>
+        <input type="text" id="password" required />
+        <button type="submit">Login</button>
+      </form>
+    </template>
 
-		<!-- Error Message 14 -->
-		<template>
-			<p class="error-msg"></p>
-		</template>
+    <!-- Error Message 14 -->
+    <template>
+      <p class="error-msg"></p>
+    </template>
 
-		<!-- Logout Component 15 -->
-		<template>
-			<div class="logout">
-				<h1>Welcome <output></output>!</h1>
-				<div class="user-posts"></div>
+    <!-- Logout Component 15 -->
+    <template>
+      <div class="logout">
+        <h1>Welcome <output></output>!</h1>
+        <div class="user-posts"></div>
 
-				<a href="#newpost"> New Post </a>
+        <a href="#newpost"> New Post </a>
 
-				<p>You are currently logged in.</p>
-				<button type="button" class="logout">Logout</button>
-			</div>
-		</template>
+        <p>You are currently logged in.</p>
+        <button type="button" class="logout">Logout</button>
+      </div>
+    </template>
 
-		<!-- New Post 16 -->
-		<template>
-			<form>
-				<h1>New Post</h1>
-				<label htmlFor="title">Title*</label>
-				<input type="text" id="title" required />
-				<button type="submit">Submit</button>
-			</form>
-		</template>
+    <!-- New Post 16 -->
+    <template>
+      <form>
+        <h1>New Post</h1>
+        <label htmlFor="title">Title*</label>
+        <input type="text" id="title" required />
+        <button type="submit">Submit</button>
+      </form>
+    </template>
 
-		<!-- Modal Body 17 -->
-		<template>
-			<div class="body">
-				<p>You are going to delete the post permanently. Are you sure?</p>
-				<div class="buttons">
-					<button type="button" class="delete">Delete</button>
-					<button type="button" class="cancel">Cancel</button>
-				</div>
-			</div>
-		</template>
-	</body>
+    <!-- Modal Body 17 -->
+    <template>
+      <div class="body">
+        <p>You are going to delete the post permanently. Are you sure?</p>
+        <div class="buttons">
+          <button type="button" class="delete">Delete</button>
+          <button type="button" class="close">Cancel</button>
+        </div>
+      </div>
+    </template>
+
+    <!-- ErrorDlg Body 18 -->
+    <template>
+      <div class="body">
+        <p></p>
+        <div class="buttons">
+          <button type="button" class="close">OK</button>
+        </div>
+      </div>
+    </template>
+  </body>
 </html>
