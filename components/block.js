@@ -22,7 +22,7 @@ function addLinks(text, links) {
 	return text;
 }
 
-export function initBlock(block) {
+export function initBlock(block, edit) {
 	let blockNode;
 	switch (block.type) {
 		case "paragraph":
@@ -40,6 +40,10 @@ export function initBlock(block) {
 			if (block.language !== " ")
 				codeNode.classList.add(`language-${block.language}`);
 			break;
+	}
+	if (edit) {
+		const blockButtonsNode = importTemp(19);
+		blockNode.appendChild(blockButtonsNode);
 	}
 	return blockNode;
 }

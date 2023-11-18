@@ -134,9 +134,9 @@ initModal({
 const storageItem = localStorage.getItem("loginData");
 if (storageItem) loginData = JSON.parse(storageItem);
 
-export function viewPost(_postID) {
+export function viewPost(_postID, edit) {
 	if (_postID) postID = _postID;
-	initPost(getPost(postID));
+	initPost(getPost(postID), edit);
 	window.location.href = "#post";
 }
 

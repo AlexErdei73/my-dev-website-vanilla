@@ -31,7 +31,7 @@ export function initPost(post, edit) {
 		const buttonNode = event.target;
 		const postID =
 			buttonNode.parentNode.parentNode.parentNode.getAttribute("data-postid");
-		viewPost(postID);
+		viewPost(postID, edit);
 	});
 
 	if (edit) {

@@ -3,7 +3,7 @@ import { initAuthor } from "./author.js";
 import { importTemp } from "../helper.js";
 import { prism } from "../prism.js";
 
-export function initPost(post, parentNode) {
+export function initPost(post, edit, parentNode) {
 	let postNode = parentNode;
 	if (!parentNode) postNode = document.querySelector(".post");
 	const oldNode = postNode.querySelector("article.article");
@@ -14,7 +14,7 @@ export function initPost(post, parentNode) {
 	node.appendChild(titleNode);
 
 	post.content.forEach((block) => {
-		const blockNode = initBlock(block);
+		const blockNode = initBlock(block, edit);
 		node.appendChild(blockNode);
 	});
 
