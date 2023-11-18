@@ -204,5 +204,32 @@
 				<button type="button" class="delete">Delete</button>
 			</div>
 		</template>
+
+		<!-- Block Edit Form 20 -->
+		<template>
+			<form class="edit-block">
+				<div class="input-container">
+					<input type="text" id="text" required />
+					<textarea class="hidden" id="text"></textarea>
+					<div class="type-area">
+						<select name="type" id="type">
+							<option value="paragraph">Paragraph</option>
+							<option value="subtitle">Subtitle</option>
+							<option value="code">Code</option>
+						</select>
+						<select class="hidden" name="language" id="language">
+							<option value="html">HTML</option>
+							<option value="css">CSS</option>
+							<option value="javascript">JavaScript</option>
+						</select>
+					</div>
+				</div>
+				<div class="buttons">
+					<button type="submit" class="submit">Submit</button>
+					<button type="button" cancel="cancel">Cancel</button>
+				</div>
+				<div class="errors"></div>
+			</form>
+		</template>
 	</body>
 </html>

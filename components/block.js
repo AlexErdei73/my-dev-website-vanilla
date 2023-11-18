@@ -23,8 +23,9 @@ function addLinks(text, links) {
 }
 
 export function initBlock(block, edit) {
-	const blockNode = document.createElement("div");
+	let blockNode = document.createElement("div");
 	blockNode.classList.add("block");
+	blockNode.setAttribute("data-blockid", block._id);
 	let contentNode;
 	switch (block.type) {
 		case "paragraph":
@@ -46,6 +47,13 @@ export function initBlock(block, edit) {
 	blockNode.appendChild(contentNode);
 	if (edit) {
 		const blockButtonsNode = importTemp(19);
+		const editButton = blockButtonsNode.querySelector(".edit");
+		editButton.addEventListener("click", function (event) {
+			const editBtn = event.target;
+			const blockID =
+				editBtn.parentNode.parentNode.getAttribute("data-blockid");
+			console.log(blockID);
+		});
 		blockNode.appendChild(blockButtonsNode);
 	}
 	return blockNode;
