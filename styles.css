@@ -376,6 +376,41 @@ dialog.modal::backdrop {
 	color: red;
 }
 
+/* Block */
+.block {
+	max-width: 43.75em;
+	margin: 0.625em 0 0;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 0.625em;
+}
+
+.block p,
+.block h2,
+.block pre {
+	flex-shrink: 1;
+	margin-top: 0 !important;
+}
+
+.block pre {
+	min-width: calc(100% - 6.5em);
+	flex-grow: 1;
+}
+
+.block .buttons {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row-reverse;
+	justify-content: flex-start;
+	flex-grow: 1;
+	gap: 0.625em;
+}
+
+.block .buttons button {
+	width: 4rem;
+}
+
 @media (max-height: 25em) {
 	nav {
 		width: 100%;

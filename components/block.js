@@ -23,24 +23,27 @@ function addLinks(text, links) {
 }
 
 export function initBlock(block, edit) {
-	let blockNode;
+	const blockNode = document.createElement("div");
+	blockNode.classList.add("block");
+	let contentNode;
 	switch (block.type) {
 		case "paragraph":
-			blockNode = importTemp(9);
-			blockNode.innerHTML = addLinks(block.text, block.links);
+			contentNode = importTemp(9);
+			contentNode.innerHTML = addLinks(block.text, block.links);
 			break;
 		case "subtitle":
-			blockNode = importTemp(10);
-			blockNode.textContent = block.text;
+			contentNode = importTemp(10);
+			contentNode.textContent = block.text;
 			break;
 		case "code":
-			blockNode = importTemp(11);
-			const codeNode = blockNode.querySelector("code");
+			contentNode = importTemp(11);
+			const codeNode = contentNode.querySelector("code");
 			codeNode.textContent = block.text;
 			if (block.language !== " ")
 				codeNode.classList.add(`language-${block.language}`);
 			break;
 	}
+	blockNode.appendChild(contentNode);
 	if (edit) {
 		const blockButtonsNode = importTemp(19);
 		blockNode.appendChild(blockButtonsNode);
