@@ -25,6 +25,5 @@ export function initPost(post, edit, parentNode) {
 
   if (oldNode) postNode.replaceChild(node, oldNode);
   else postNode.appendChild(node);
-  postNode.setAttribute("data-postid", post._id);
   prism();
 }

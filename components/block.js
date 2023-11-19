@@ -1,5 +1,4 @@
 import { importTemp } from "../helper.js";
-import { getPost } from "../index.js";
 import { initEditBlock } from "./editBlock.js";
 
 function addLinks(text, links) {
@@ -50,14 +49,7 @@ export function initBlock(block, edit) {
   if (edit) {
     const blockButtonsNode = importTemp(19);
     const editButton = blockButtonsNode.querySelector(".edit");
-    editButton.addEventListener("click", function (event) {
-      const editBtn = event.target;
-      const blockNode = editBtn.parentNode.parentNode;
-      const blockID = blockNode.getAttribute("data-blockid");
-      const postID =
-        blockNode.parentNode.parentNode.getAttribute("data-postid");
-      const post = getPost(postID);
-      const block = post.content.find((block) => block._id === blockID);
+    editButton.addEventListener("click", function () {
       initEditBlock(block);
     });
     blockNode.appendChild(blockButtonsNode);
