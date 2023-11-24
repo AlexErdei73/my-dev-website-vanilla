@@ -418,6 +418,12 @@ dialog.modal::backdrop {
   flex-grow: 1;
 }
 
+.type-area {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625em;
+}
+
 .block p,
 .block h2,
 .block pre {
