@@ -76,6 +76,9 @@ function getNewBlock(block, node) {
   else newBlock.text = inputNode.value;
   newBlock.language = " ";
   if (newBlock.type === "code") newBlock.language = selectLangNode.value;
+  const output = separateLinksFromText(newBlock.text);
+  newBlock.text = output.text;
+  newBlock.links = output.links;
   return newBlock;
 }
 

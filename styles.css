@@ -238,7 +238,7 @@ button:hover {
 }
 
 .post article {
-  max-width: 100%;
+  max-width: min(100%, 37em);
 }
 
 /* Author */
