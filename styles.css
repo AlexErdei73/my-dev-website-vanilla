@@ -412,7 +412,6 @@ dialog.modal::backdrop {
 .input-container textarea {
   border-color: var(--primary-color);
   border-radius: 0.3125em;
-  height: 1.25em !important;
   outline: none;
   height: auto;
   flex-grow: 1;
