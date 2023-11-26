@@ -8,6 +8,7 @@ import {
   getPosts,
   postPosts,
   deletePosts,
+  deleteBlock,
   createUser,
   updateUser,
   updatePostLikes,
@@ -217,6 +218,23 @@ export async function submitBlock(block) {
     oldBlockNode.parentNode.replaceChild(blockNode, oldBlockNode);
     if (block.errors) initEditBlock(block);
     if (block.type === "code") prism();
+  }
+}
+
+export async function remove(block) {
+  const post = posts.find((post) => post._id === block.post);
+  const index = post.content.findIndex((blck) => blck._id === block._id);
+  try {
+    const response = await deleteBlock(block, loginData.token);
+    if (response.success) {
+      post.content.splice(index, 1);
+    } else block.errors = response.errors;
+  } catch (error) {
+    block.errors = [{ msg: error.message }];
+  } finally {
+    const blockNode = document.querySelector(`[data-blockid="${block._id}"]`);
+    if (block.errors && block.errors.length !== 0) initEditBlock(block);
+    else blockNode.remove();
   }
 }
 

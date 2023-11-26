@@ -234,11 +234,11 @@ button:hover {
 .about .article pre,
 .about .article h2 {
   margin: 0.625em 0 0 0;
-  max-width: 43.75em;
+  max-width: 44em;
 }
 
-.post article {
-  max-width: min(100%, 37em);
+.post .article {
+  max-width: min(100%, 44em);
 }
 
 /* Author */
@@ -377,7 +377,7 @@ dialog.modal::backdrop {
 
 /* Block */
 .block {
-  max-width: 43.75em;
+  max-width: 44em;
   margin: 0.625em 0 0;
   display: flex;
   align-items: flex-start;

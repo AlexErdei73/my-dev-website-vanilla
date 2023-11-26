@@ -1,5 +1,6 @@
 import { importTemp } from "../helper.js";
 import { initEditBlock } from "./editBlock.js";
+import { remove } from "../index.js";
 
 function addLinks(text, links) {
   let shift = 0; //Shift the position from the original with the combined lengths of the insertations
@@ -51,6 +52,10 @@ export function initBlock(block, edit) {
     const editButton = blockButtonsNode.querySelector(".edit");
     editButton.addEventListener("click", function () {
       initEditBlock(block);
+    });
+    const deleteButton = blockButtonsNode.querySelector(".delete");
+    deleteButton.addEventListener("click", function () {
+      remove(block);
     });
     blockNode.appendChild(blockButtonsNode);
   }
