@@ -31,11 +31,9 @@ export function initEditBlock(block) {
   selectTypeNode.value = block.type;
   if (block.type !== "subtitle") {
     inputNode.addEventListener("change", function () {
-      console.log("Input Change!");
       textareaNode.value = inputNode.value;
     });
     textareaNode.addEventListener("change", function () {
-      console.log("Textarea Change!");
       inputNode.value = textareaNode.value;
     });
     textareaNode.style = "";
@@ -59,8 +57,7 @@ export function initEditBlock(block) {
   });
   editBlockNode.addEventListener("submit", function (event) {
     event.preventDefault();
-    console.log(getNewBlock(block, editBlockNode));
-    submitBlock(block);
+    submitBlock(getNewBlock(block, editBlockNode));
   });
   const blockNode = document.querySelector(
     `.block[data-blockid="${block._id}"]`

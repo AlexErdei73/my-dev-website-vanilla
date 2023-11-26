@@ -197,6 +197,14 @@ export async function submitBlock(block) {
   try {
     const response = await updateBlock(block, loginData.token);
     block.errors = response.errors;
+    if (response.success) {
+      delete block.errors;
+      const post = posts.find((post) => post._id === block.post);
+      const blockIndex = post.content.findIndex(
+        (blck) => blck._id === block._id
+      );
+      post.content[blockIndex] = block;
+    }
   } catch (error) {
     block.errors = [{ msg: error.message }];
   } finally {
@@ -206,7 +214,6 @@ export async function submitBlock(block) {
     );
     oldBlockNode.parentNode.replaceChild(blockNode, oldBlockNode);
     if (block.errors) initEditBlock(block);
-    console.log(block);
   }
 }
 
