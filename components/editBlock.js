@@ -74,10 +74,10 @@ function getNewBlock(block, node) {
   const selectLangNode = node.querySelector("select#language");
   const newBlock = { ...block };
   newBlock.type = selectTypeNode.value;
-  if (newBlock.type !== "subtitle") newBlock.text = textareaNode.value;
+  if (block.type !== "subtitle") newBlock.text = textareaNode.value;
   else newBlock.text = inputNode.value;
   newBlock.language = " ";
-  if (newBlock.type === "code") newBlock.language = selectLangNode.value;
+  if (block.type === "code") newBlock.language = selectLangNode.value;
   const output = separateLinksFromText(newBlock.text);
   newBlock.text = output.text;
   newBlock.links = output.links;

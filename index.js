@@ -23,6 +23,7 @@ import {
 } from "./components/modal.js";
 import { initBlock } from "./components/block.js";
 import { initEditBlock } from "./components/editBlock.js";
+import { prism } from "./prism.js";
 
 export let posts = [
   {
@@ -194,6 +195,7 @@ export async function submitLogin({ username, password }) {
 }
 
 export async function submitBlock(block) {
+  if (block.type === "code" && block.language === " ") block.language = "html";
   try {
     const response = await updateBlock(block, loginData.token);
     block.errors = response.errors;
@@ -214,6 +216,7 @@ export async function submitBlock(block) {
     );
     oldBlockNode.parentNode.replaceChild(blockNode, oldBlockNode);
     if (block.errors) initEditBlock(block);
+    if (block.type === "code") prism();
   }
 }
 
