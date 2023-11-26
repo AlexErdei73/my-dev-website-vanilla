@@ -448,6 +448,10 @@ dialog.modal::backdrop {
   width: 4rem;
 }
 
+.errors {
+  width: 100%;
+}
+
 @media (max-height: 25em) {
   nav {
     width: 100%;

@@ -52,6 +52,7 @@ export function initEditBlock(block) {
     textareaNode.parentNode.replaceChild(inputNode, textareaNode);
   }
   cancelButton.addEventListener("click", function () {
+    delete block.errors;
     const blockNode = initBlock(block, true);
     editBlockNode.parentNode.replaceChild(blockNode, editBlockNode);
     if (block.type === "code") prism();
@@ -64,6 +65,7 @@ export function initEditBlock(block) {
   const blockNode = document.querySelector(
     `.block[data-blockid="${block._id}"]`
   );
+  insertErrorMessages(editBlockNode, block);
   editBlockNode.setAttribute("data-blockid", block._id);
   blockNode.parentNode.replaceChild(editBlockNode, blockNode);
 }
@@ -109,4 +111,15 @@ function separateLinksFromText(textInput) {
     }
   });
   return { links: links, text: textPieces.join("") };
+}
+
+function insertErrorMessages(blockNode, block) {
+  if (!block.errors || block.errors.length === 0) return;
+  const errorNodes = block.errors.map((error) => {
+    const errorNode = importTemp(14);
+    errorNode.textContent = error.msg;
+    return errorNode;
+  });
+  const errorContainer = blockNode.querySelector(".errors");
+  errorNodes.forEach((errorNode) => errorContainer.appendChild(errorNode));
 }
