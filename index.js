@@ -21,6 +21,8 @@ import {
   showErrorMsg,
   showModal,
 } from "./components/modal.js";
+import { initBlock } from "./components/block.js";
+import { initEditBlock } from "./components/editBlock.js";
 
 export let posts = [
   {
@@ -189,6 +191,23 @@ export async function submitLogin({ username, password }) {
   }
   initLogin(loginData);
   initPosts(getPublishedPosts());
+}
+
+export async function submitBlock(block) {
+  try {
+    const response = await updateBlock(block, loginData.token);
+    block.errors = response.errors;
+  } catch (error) {
+    block.errors = [{ msg: error.message }];
+  } finally {
+    const blockNode = initBlock(block, true);
+    const oldBlockNode = document.querySelector(
+      `[data-blockid="${block._id}"]`
+    );
+    oldBlockNode.parentNode.replaceChild(blockNode, oldBlockNode);
+    if (block.errors) initEditBlock(block);
+    console.log(block);
+  }
 }
 
 showMainElement();

@@ -1,6 +1,7 @@
 import { importTemp } from "../helper.js";
 import { initBlock } from "./block.js";
 import { prism } from "../prism.js";
+import { submitBlock } from "../index.js";
 
 function numberOfLines(text) {
   return text.split("\n").length;
@@ -58,10 +59,12 @@ export function initEditBlock(block) {
   editBlockNode.addEventListener("submit", function (event) {
     event.preventDefault();
     console.log(getNewBlock(block, editBlockNode));
+    submitBlock(block);
   });
   const blockNode = document.querySelector(
     `.block[data-blockid="${block._id}"]`
   );
+  editBlockNode.setAttribute("data-blockid", block._id);
   blockNode.parentNode.replaceChild(editBlockNode, blockNode);
 }
 
