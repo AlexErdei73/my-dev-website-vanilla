@@ -18,6 +18,20 @@ export function initPost(post, edit, parentNode) {
     node.appendChild(blockNode);
   });
 
+  if (edit) {
+    const newBlockNode = initBlock(
+      {
+        _id: "new-block",
+        post: post._id,
+        type: "paragraph",
+        text: "New block",
+        links: [],
+      },
+      true
+    );
+    node.appendChild(newBlockNode);
+  }
+
   const oldAuthorNode = postNode.querySelector("article.author");
   const authorNode = initAuthor(post.author);
   if (oldAuthorNode) postNode.replaceChild(authorNode, oldAuthorNode);

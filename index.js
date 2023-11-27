@@ -9,6 +9,7 @@ import {
   postPosts,
   deletePosts,
   deleteBlock,
+  createBlock,
   createUser,
   updateUser,
   updatePostLikes,
@@ -235,6 +236,34 @@ export async function remove(block) {
     const blockNode = document.querySelector(`[data-blockid="${block._id}"]`);
     if (block.errors && block.errors.length !== 0) initEditBlock(block);
     else blockNode.remove();
+  }
+}
+
+export async function saveBlock(block) {
+  delete block._id;
+  const post = posts.find((post) => post._id === block.post);
+  try {
+    const response = await createBlock(block, loginData.token);
+    if (response.success) {
+      post.content.push(response.block);
+      block = response.block;
+    } else {
+      block.errors = response.errors;
+    }
+  } catch (error) {
+    block.errors = [{ msg: error.message }];
+  } finally {
+    if (block.errors && block.errors.length !== 0) initEditBlock(block);
+    else {
+      const oldBlockNode = document.querySelector(
+        '[data-blockid = "new-block"]'
+      );
+      const blockNode = initBlock(block, true);
+      oldBlockNode.parentNode.replaceChild(blockNode, oldBlockNode);
+      blockNode.parentNode.appendChild(oldBlockNode);
+      const cancelButton = oldBlockNode.querySelector(".cancel");
+      cancelButton.click();
+    }
   }
 }
 

@@ -57,6 +57,7 @@ export function initBlock(block, edit) {
     deleteButton.addEventListener("click", function () {
       remove(block);
     });
+    if (block._id === "new-block") deleteButton.remove();
     blockNode.appendChild(blockButtonsNode);
   }
   return blockNode;
