@@ -205,8 +205,8 @@ button:hover {
 
 .card .buttons button {
   font-size: inherit;
-  width: 4.7rem;
-  padding: 0.3rem 0.6rem;
+  width: 5.75em;
+  padding: 0.4em 0.2em;
   font-size: 75%;
 }
 
@@ -239,6 +239,7 @@ button:hover {
 
 .post .article {
   max-width: min(100%, 44em);
+  width: 100%;
 }
 
 /* Author */
@@ -267,12 +268,12 @@ form {
 input {
   border-color: var(--primary-color);
   border-radius: 0.3em;
-  height: 1.6rem;
+  height: 1.6em;
   outline: none;
 }
 
 input:focus {
-  box-shadow: 0 0 0.3rem 0.125rem var(--primary-color-hover);
+  box-shadow: 0 0 0.3em 0.125em var(--primary-color-hover);
 }
 
 .login input,
@@ -446,7 +447,9 @@ dialog.modal::backdrop {
 }
 
 .block .buttons button {
-  width: 4rem;
+  width: 4.75em;
+  font-size: 75%;
+  padding: 0.4em;
 }
 
 .errors {
@@ -540,6 +543,21 @@ dialog.modal::backdrop {
   }
   .login {
     width: calc(100% - 1.3em);
+  }
+  main {
+    font-size: clamp(16px, 6vw, 2rem);
+  }
+  button,
+  select,
+  input,
+  code {
+    font-size: clamp(12px, 4.5vw, 1.5rem) !important;
+  }
+  h1 {
+    font-size: clamp(24px, 9vw, 3rem) !important;
+  }
+  .article h2 {
+    font-size: clamp(20px, 7.5vw, 2rem);
   }
 }
 
