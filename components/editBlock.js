@@ -1,7 +1,8 @@
 import { importTemp } from "../helper.js";
 import { initBlock } from "./block.js";
 import { prism } from "../prism.js";
-import { submitBlock, saveBlock } from "../index.js";
+import { submitBlock } from "../index.js";
+import { removeBlock } from "./post.js";
 
 function numberOfLines(text) {
   return text.split("\n").length;
@@ -24,7 +25,10 @@ function textWithLinks(block) {
 
 export function initEditBlock(block) {
   const editBlockNode = importTemp(20);
+  editBlockNode.setAttribute("data-blockid", block._id);
   const cancelButton = editBlockNode.querySelector(".buttons .cancel");
+  const submitButton = editBlockNode.querySelector(".buttons .submit");
+  if (!isNaN(block._id)) submitButton.classList.add("hidden");
   const inputNode = importTemp(21);
   const textareaNode = editBlockNode.querySelector(".input-container textarea");
   const selectTypeNode = editBlockNode.querySelector("select#type");
@@ -50,21 +54,20 @@ export function initEditBlock(block) {
     textareaNode.parentNode.replaceChild(inputNode, textareaNode);
   }
   cancelButton.addEventListener("click", function () {
-    delete block.errors;
+    if (block.errors && block.errors.length !== 0) {
+      if (!isNaN(block._id)) removeBlock(block);
+      else delete block.errors;
+    }
     const blockNode = initBlock(block, true);
     editBlockNode.parentNode.replaceChild(blockNode, editBlockNode);
     if (block.type === "code") prism();
   });
   editBlockNode.addEventListener("submit", function (event) {
     event.preventDefault();
-    if (block._id === "new-block") saveBlock(getNewBlock(block, editBlockNode));
-    else submitBlock(getNewBlock(block, editBlockNode));
+    submitBlock(getNewBlock(block, editBlockNode));
   });
-  const blockNode =
-    document.querySelector(`.block[data-blockid="${block._id}"]`) ||
-    document.querySelector('[data-blockid="new-block"]');
+  const blockNode = document.querySelector(`[data-blockid="${block._id}"]`);
   insertErrorMessages(editBlockNode, block);
-  editBlockNode.setAttribute("data-blockid", block._id);
   blockNode.parentNode.replaceChild(editBlockNode, blockNode);
 }
 
