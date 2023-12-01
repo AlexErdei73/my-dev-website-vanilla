@@ -20,3 +20,35 @@ export function swapElements(obj1, obj2) {
   // remove temporary marker node
   temp.parentNode.removeChild(temp);
 }
+
+export function animate(element, first, last) {
+  // Invert: determine the delta between the
+  // first and last bounds to invert the element
+  const deltaX = first.left - last.left;
+  const deltaY = first.top - last.top;
+  const deltaW = first.width / last.width;
+  const deltaH = first.height / last.height;
+
+  // Play: animate the final element from its first bounds
+  // to its last bounds (which is no transform)
+  element.animate(
+    [
+      {
+        transformOrigin: "top left",
+        transform: `
+    translate(${deltaX}px, ${deltaY}px)
+    scale(${deltaW}, ${deltaH})
+  `,
+      },
+      {
+        transformOrigin: "top left",
+        transform: "none",
+      },
+    ],
+    {
+      duration: 900,
+      easing: "ease-in-out",
+      fill: "both",
+    }
+  );
+}

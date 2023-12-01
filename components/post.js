@@ -1,6 +1,6 @@
 import { initBlock } from "./block.js";
 import { initAuthor } from "./author.js";
-import { importTemp, swapElements } from "../helper.js";
+import { importTemp, swapElements, animate } from "../helper.js";
 import { prism } from "../prism.js";
 import { createBlock, updatePost } from "../backend/backend.js";
 import { loginData } from "../index.js";
@@ -73,17 +73,40 @@ export function removeBlock(block) {
   initPost(_post, true, _parentNode);
 }
 
-export function swapBlocks() {
+export async function swapBlocks() {
+  const newPost = { ..._post };
   const nodesToSwap = document.querySelectorAll(".edit-block");
   const idsToSwap = Array.from(nodesToSwap).map((node) =>
     node.getAttribute("data-blockid")
   );
   const indexes = idsToSwap.map((id) =>
-    _post.content.findIndex((block) => block._id === id)
+    newPost.content.findIndex((block) => block._id === id)
   );
   const swapBlock = _post.content[indexes[0]];
-  _post.content[indexes[0]] = _post.content[indexes[1]];
-  _post.content[indexes[1]] = swapBlock;
-  //const swapNode = JSON.parse(JSON.stringify(nodesToSwap[0]));
-  swapElements(nodesToSwap[1], nodesToSwap[0]);
+  newPost.content[indexes[0]] = newPost.content[indexes[1]];
+  newPost.content[indexes[1]] = swapBlock;
+  try {
+    const response = await updatePost(newPost, loginData.token);
+    if (response.success) {
+      _post = newPost;
+      const firstBlockA = nodesToSwap[0].getBoundingClientRect();
+      const firstBlockB = nodesToSwap[1].getBoundingClientRect();
+      swapElements(nodesToSwap[1], nodesToSwap[0]);
+      const lastBlockA = nodesToSwap[0].getBoundingClientRect();
+      const lastBlockB = nodesToSwap[1].getBoundingClientRect();
+      animate(nodesToSwap[0], firstBlockA, lastBlockA);
+      animate(nodesToSwap[1], firstBlockB, lastBlockB);
+    } else {
+      showErrors(response.errors, indexes);
+    }
+  } catch (error) {
+    showErrors([{ msg: error.message }], indexes);
+  }
+}
+
+function showErrors(errors, indexes) {
+  _post.content[indexes[0]].errors = errors;
+  _post.content[indexes[1]].errors = errors;
+  initEditBlock(_post.content[indexes[0]]);
+  initEditBlock(_post.content[indexes[1]]);
 }
