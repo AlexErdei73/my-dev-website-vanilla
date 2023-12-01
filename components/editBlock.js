@@ -1,8 +1,8 @@
 import { importTemp } from "../helper.js";
-import { initBlock } from "./block.js";
+import { initBlock, showSwapButton } from "./block.js";
 import { prism } from "../prism.js";
 import { submitBlock } from "../index.js";
-import { removeBlock } from "./post.js";
+import { removeBlock, swapBlocks } from "./post.js";
 
 function numberOfLines(text) {
   return text.split("\n").length;
@@ -28,6 +28,7 @@ export function initEditBlock(block) {
   editBlockNode.setAttribute("data-blockid", block._id);
   const cancelButton = editBlockNode.querySelector(".buttons .cancel");
   const submitButton = editBlockNode.querySelector(".buttons .submit");
+  const swapButton = editBlockNode.querySelector(".buttons .swap");
   if (!isNaN(block._id)) submitButton.classList.add("hidden");
   const inputNode = importTemp(21);
   const textareaNode = editBlockNode.querySelector(".input-container textarea");
@@ -61,10 +62,14 @@ export function initEditBlock(block) {
     const blockNode = initBlock(block, true);
     editBlockNode.parentNode.replaceChild(blockNode, editBlockNode);
     if (block.type === "code") prism();
+    showSwapButton();
   });
   editBlockNode.addEventListener("submit", function (event) {
     event.preventDefault();
     submitBlock(getNewBlock(block, editBlockNode));
+  });
+  swapButton.addEventListener("click", function () {
+    swapBlocks();
   });
   const blockNode = document.querySelector(`[data-blockid="${block._id}"]`);
   insertErrorMessages(editBlockNode, block);

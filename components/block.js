@@ -53,6 +53,7 @@ export function initBlock(block, edit) {
     const editButton = blockButtonsNode.querySelector(".edit");
     editButton.addEventListener("click", function () {
       initEditBlock(block);
+      showSwapButton();
     });
     const deleteButton = blockButtonsNode.querySelector(".delete");
     deleteButton.addEventListener("click", function () {
@@ -62,8 +63,22 @@ export function initBlock(block, edit) {
     insertButton.addEventListener("click", function () {
       insertBlock(block);
     });
-    //if (block._id === "new-block") deleteButton.remove();
     blockNode.appendChild(blockButtonsNode);
   }
   return blockNode;
+}
+
+export function showSwapButton() {
+  const editBlockNodes = document.querySelectorAll(".edit-block");
+  if (editBlockNodes.length === 2) {
+    editBlockNodes.forEach((node) => {
+      const btn = node.querySelector("button.swap");
+      btn.classList.remove("hidden");
+    });
+  } else {
+    editBlockNodes.forEach((node) => {
+      const btn = node.querySelector("button.swap");
+      if (!btn.classList.contains("hidden")) btn.classList.add("hidden");
+    });
+  }
 }
