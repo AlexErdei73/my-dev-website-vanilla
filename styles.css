@@ -456,6 +456,29 @@ dialog.modal::backdrop {
   width: 100%;
 }
 
+/* Title */
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title h1 {
+  flex: 1 1 0;
+}
+
+.title .buttons {
+  width: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.625em;
+}
+
+.title .buttons button {
+  padding: 0.65em 1.3em;
+  width: fit-content;
+}
+
 @media (max-height: 25em) {
   nav {
     width: 100%;

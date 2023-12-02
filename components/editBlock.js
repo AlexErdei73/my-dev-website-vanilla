@@ -45,6 +45,7 @@ export function initEditBlock(block) {
     if (block.type === "code") {
       const selectLangNode = editBlockNode.querySelector("#language");
       selectLangNode.classList.remove("hidden");
+      selectLangNode.value = block.language;
       textareaNode.value = block.text;
       textareaNode.rows = numberOfLines(block.text);
     } else {

@@ -5,6 +5,7 @@ import { prism } from "../prism.js";
 import { createBlock, updatePost } from "../backend/backend.js";
 import { loginData } from "../index.js";
 import { initEditBlock } from "./editBlock.js";
+import { initTitle } from "./title.js";
 
 let _post, _parentNode;
 
@@ -16,8 +17,7 @@ export function initPost(post, edit, parentNode) {
   const oldNode = postNode.querySelector("article.article");
   const node = document.createElement("article");
   node.classList.add("article");
-  const titleNode = importTemp(8);
-  titleNode.textContent = post.title;
+  const titleNode = initTitle(post, edit);
   node.appendChild(titleNode);
 
   post.content.forEach((block) => {
