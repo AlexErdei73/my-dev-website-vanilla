@@ -109,7 +109,7 @@
 
     <!-- Title 8 -->
     <template>
-      <div class="title">
+      <div class="post-title">
         <h1></h1>
         <div class="buttons hidden">
           <button type="button" class="insert">Insert</button>
@@ -242,6 +242,16 @@
     <!-- Input Node For Subtitle Block 21 -->
     <template>
       <input type="text" id="text" />
+    </template>
+
+    <!-- Edit Title component 22 -->
+    <template>
+      <form class="edit-title">
+        <input type="text" id="title" name="title" required />
+        <button type="submit" class="submit">Submit</button>
+        <button type="button" class="cancel">Cancel</button>
+        <div class="errors"></div>
+      </form>
     </template>
   </body>
 </html>

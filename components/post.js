@@ -7,11 +7,10 @@ import { loginData } from "../index.js";
 import { initEditBlock } from "./editBlock.js";
 import { initTitle } from "./title.js";
 
-let _post, _parentNode;
+let _post;
 
 export function initPost(post, edit, parentNode) {
   _post = post;
-  _parentNode = parentNode;
   let postNode = parentNode;
   if (!parentNode) postNode = document.querySelector(".post");
   const oldNode = postNode.querySelector("article.article");
@@ -78,7 +77,10 @@ export async function insertBlock(block) {
 
 export function removeBlock(block) {
   _post.content.splice(+block._id, 1);
-  initPost(_post, true, _parentNode);
+  const blockNode = document.querySelector(
+    `.post [data-blockid="${block._id}"]`
+  );
+  blockNode.remove();
 }
 
 export async function swapBlocks() {
