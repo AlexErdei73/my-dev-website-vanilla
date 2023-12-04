@@ -52,3 +52,14 @@ export function animate(element, first, last) {
     }
   );
 }
+
+export function insertErrorMessages(node, errors) {
+  if (!errors || errors.length === 0) return;
+  const errorNodes = errors.map((error) => {
+    const errorNode = importTemp(14);
+    errorNode.textContent = error.msg;
+    return errorNode;
+  });
+  const errorContainer = node.querySelector(".errors");
+  errorNodes.forEach((errorNode) => errorContainer.appendChild(errorNode));
+}

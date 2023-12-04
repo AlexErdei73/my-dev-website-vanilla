@@ -1,4 +1,4 @@
-import { importTemp } from "../helper.js";
+import { importTemp, insertErrorMessages } from "../helper.js";
 import { initBlock, showSwapButton } from "./block.js";
 import { prism } from "../prism.js";
 import { submitBlock } from "../index.js";
@@ -73,7 +73,7 @@ export function initEditBlock(block) {
     swapBlocks();
   });
   const blockNode = document.querySelector(`[data-blockid="${block._id}"]`);
-  insertErrorMessages(editBlockNode, block);
+  insertErrorMessages(editBlockNode, block.errors);
   blockNode.parentNode.replaceChild(editBlockNode, blockNode);
 }
 
@@ -118,15 +118,4 @@ function separateLinksFromText(textInput) {
     }
   });
   return { links: links, text: textPieces.join("") };
-}
-
-function insertErrorMessages(blockNode, block) {
-  if (!block.errors || block.errors.length === 0) return;
-  const errorNodes = block.errors.map((error) => {
-    const errorNode = importTemp(14);
-    errorNode.textContent = error.msg;
-    return errorNode;
-  });
-  const errorContainer = blockNode.querySelector(".errors");
-  errorNodes.forEach((errorNode) => errorContainer.appendChild(errorNode));
 }

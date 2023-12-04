@@ -1,6 +1,6 @@
 import { initBlock } from "./block.js";
 import { initAuthor } from "./author.js";
-import { importTemp, swapElements, animate } from "../helper.js";
+import { swapElements, animate } from "../helper.js";
 import { prism } from "../prism.js";
 import { createBlock, updatePost } from "../backend/backend.js";
 import { loginData } from "../index.js";

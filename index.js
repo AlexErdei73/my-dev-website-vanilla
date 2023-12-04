@@ -25,7 +25,9 @@ import {
 } from "./components/modal.js";
 import { initBlock } from "./components/block.js";
 import { initEditBlock } from "./components/editBlock.js";
+import { initTitle } from "./components/title.js";
 import { prism } from "./prism.js";
+import { initEditTitle } from "./components/editTitle.js";
 
 export let posts = [
   {
@@ -238,6 +240,25 @@ export async function remove(block) {
     const blockNode = document.querySelector(`[data-blockid="${block._id}"]`);
     if (block.errors && block.errors.length !== 0) initEditBlock(block);
     else blockNode.remove();
+  }
+}
+
+export async function submitTitle(newPost) {
+  let _errors = [];
+  const editTitleNode = document.querySelector(".post .edit-title");
+  const post = posts.find((post) => post._id === newPost._id);
+  try {
+    const response = await updatePost(newPost, loginData.token);
+    if (response.success) {
+      post.title = newPost.title;
+    } else {
+      _errors = response.errors;
+    }
+  } catch (error) {
+    _errors.push({ msg: error.message });
+  } finally {
+    editTitleNode.parentNode.replaceChild(initTitle(post, true), editTitleNode);
+    if (_errors.length > 0) initEditTitle(post, _errors);
   }
 }
 
