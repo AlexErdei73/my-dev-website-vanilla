@@ -43,7 +43,9 @@ export async function insertBlock(block) {
     links: [],
     errors: [],
   };
-  let index = _post.content.findIndex((_block) => _block._id === block._id);
+  let index = block
+    ? _post.content.findIndex((_block) => _block._id === block._id)
+    : -1;
   index++;
   _post.content.splice(index, 0, newBlock);
   delete newBlock._id;
