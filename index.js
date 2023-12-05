@@ -127,7 +127,8 @@ export async function toggleLike(postId, userId) {
 }
 
 const aboutID = "64b3b9fc11a583b26b48b476";
-let postID = aboutID;
+let postID;
+setPostId(aboutID);
 initPost(posts[0]);
 initAboutPost(posts[0]);
 initModal({
@@ -144,7 +145,7 @@ if (storageItem) loginData = JSON.parse(storageItem);
 export function viewPost(_postID, edit) {
   if (_postID) postID = _postID;
   initPost(getPost(postID), edit);
-  window.location.href = "#post";
+  window.location.href = `#post/${postID}`;
 }
 
 getPosts()
@@ -260,6 +261,12 @@ export async function submitTitle(newPost) {
     editTitleNode.parentNode.replaceChild(initTitle(post, true), editTitleNode);
     if (_errors.length > 0) initEditTitle(post, _errors);
   }
+}
+
+export function setPostId(_postID) {
+  postID = _postID;
+  const postAnchor = document.querySelector("a.post-link");
+  postAnchor.setAttribute("href", `#post/${_postID}`);
 }
 
 showMainElement();
