@@ -68,7 +68,7 @@
     <!-- Signup 4-->
     <template>
       <div class="signup">
-        <h1>Sign Up</h1>
+        <!-- <h1>Sign Up</h1> -->
       </div>
     </template>
 
@@ -244,12 +244,37 @@
       <input type="text" id="text" />
     </template>
 
-    <!-- Edit Title component 22 -->
+    <!-- Edit Title 22 -->
     <template>
       <form class="edit-title">
         <input type="text" id="title" name="title" required />
         <button type="submit" class="submit">Submit</button>
         <button type="button" class="cancel">Cancel</button>
+        <div class="errors"></div>
+      </form>
+    </template>
+
+    <!-- Signup Form 23 -->
+    <template>
+      <form class="signup" validate="true">
+        <h1 class="title">Sign Up</h1>
+        <label htmlFor="username">Username*</label>
+        <input type="text" id="username" class="username" required />
+        <label htmlFor="password">Password*</label>
+        <input type="text" id="password" class="password" required />
+        <label htmlFor="name">Name</label>
+        <input type="text" id="name" class="name" />
+        <label htmlFor="jobTitle">Job Title</label>
+        <input type="text" id="jobTitle" class="job-title" />
+        <label htmlFor="bio">Bio</label>
+        <textarea
+          name="bio"
+          id="bio"
+          cols="30"
+          rows="10"
+          class="bio"
+        ></textarea>
+        <button type="submit" class="submit">Submit</button>
         <div class="errors"></div>
       </form>
     </template>

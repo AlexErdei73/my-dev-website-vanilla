@@ -16,7 +16,7 @@ import {
 } from "./backend/backend.js";
 import { initAboutPost } from "./components/about.js";
 import { initLogin } from "./components/login.js";
-import { initNewPost } from "./newPost.js";
+import { initNewPost } from "./components/newPost.js";
 import {
   initModal,
   closeModal,
@@ -28,6 +28,7 @@ import { initEditBlock } from "./components/editBlock.js";
 import { initTitle } from "./components/title.js";
 import { prism } from "./prism.js";
 import { initEditTitle } from "./components/editTitle.js";
+import { initSignup } from "./components/signup.js";
 
 export let posts = [
   {
@@ -141,6 +142,7 @@ initModal({
 });
 const storageItem = localStorage.getItem("loginData");
 if (storageItem) loginData = JSON.parse(storageItem);
+initSignup();
 
 export function viewPost(_postID, edit) {
   if (_postID) postID = _postID;

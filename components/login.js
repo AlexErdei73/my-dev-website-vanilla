@@ -2,7 +2,6 @@ import { importTemp } from "../helper.js";
 import { submitLogin } from "../index.js";
 import { initPosts } from "./postCards.js";
 import { posts } from "../index.js";
-import { initPost } from "./post.js";
 
 function getUserPosts(posts, userID) {
   return posts.filter((post) => post.author._id === userID);
