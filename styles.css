@@ -506,6 +506,38 @@ form.edit-title {
 	width: fit-content;
 }
 
+/* Signup */
+form.signup {
+	width: 25rem;
+	max-width: 100%;
+}
+
+form.signup h1 {
+	margin: 0;
+	margin-bottom: 1.34rem;
+}
+
+form.signup input,
+form.signup textarea {
+	width: 21.875rem;
+	max-width: 90%;
+	margin: 0 auto 0.6rem;
+}
+
+form.signup textarea {
+	border-color: #07237e;
+	border-radius: 0.3em;
+	outline: none;
+}
+
+form.signup textarea:focus {
+	box-shadow: 0 0 0.3em 0.2em #0a32b8;
+}
+
+form.signup button {
+	padding: 0.6em 1.2em;
+}
+
 @media (max-height: 25em) {
 	nav {
 		width: 100%;
