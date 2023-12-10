@@ -1,18 +1,10 @@
 import { importTemp } from "../helper.js";
-import { submitLogin } from "../index.js";
+import { submitLogin, logout } from "../index.js";
 import { initPosts } from "./postCards.js";
 import { posts } from "../index.js";
 
 function getUserPosts(posts, userID) {
   return posts.filter((post) => post.author._id === userID);
-}
-
-function logout(loginData) {
-  loginData.success = false;
-  loginData.user.username = "";
-  loginData.user.password = "";
-  localStorage.removeItem("loginData");
-  initLogin(loginData);
 }
 
 export function initLogin(loginData) {
