@@ -2,6 +2,8 @@ import { importTemp } from "../helper.js";
 import { submitLogin, logout } from "../index.js";
 import { initPosts } from "./postCards.js";
 import { posts } from "../index.js";
+import { updateSignupLinkText } from "./navigationBar.js";
+import { togglePassword } from "./signup.js";
 
 function getUserPosts(posts, userID) {
   return posts.filter((post) => post.author._id === userID);
@@ -40,6 +42,8 @@ export function initLogin(loginData) {
     const logoutButton = node.querySelector("button.logout");
     logoutButton.addEventListener("click", () => logout(loginData));
   }
+  updateSignupLinkText(loginData);
+  togglePassword(loginData);
   if (!oldNode) loginNode.appendChild(node);
   else loginNode.replaceChild(node, oldNode);
 }

@@ -1,5 +1,6 @@
 import { importTemp } from "../helper.js";
 import { setPostId } from "../index.js";
+import { removeErrors } from "./signup.js";
 
 const titleNode = document.querySelector("title");
 const pageTitleLiveRegion = document.querySelector("#page-title-live-region");
@@ -33,7 +34,16 @@ export function showMainElement() {
   const index = components.indexOf(componentStrPieces[0]);
   // If it is post
   if (index === 2) setPostId(componentStrPieces[1]);
+  // If it is signup
+  if (index === 4) removeErrors();
   updateDOM(index);
+}
+
+export function updateSignupLinkText(loginData) {
+  let textContent = "Signup";
+  if (loginData.success) textContent = "User";
+  const signupNode = document.querySelector("nav a[href='#signup']");
+  signupNode.textContent = textContent;
 }
 
 window.addEventListener("hashchange", showMainElement);
