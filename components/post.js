@@ -64,14 +64,25 @@ export async function insertBlock(block) {
     newBlock.errors.push({ msg: error.message });
   } finally {
     if (!newBlock._id) newBlock._id = index;
-    if (_post.content.length === index + 1) {
-      const lastNodeID = _post.content[index - 1]._id;
-      const lastNode = document.querySelector(`[data-blockid="${lastNodeID}"]`);
+    console.log(_post);
+    console.log(index);
+    if (index === 0) {
+      const lastNode = document.querySelector(".post .post-title");
       lastNode.parentNode.appendChild(initBlock(newBlock, true));
     } else {
-      const nextNodeID = _post.content[index + 1]._id;
-      const nextNode = document.querySelector(`[data-blockid="${nextNodeID}"]`);
-      nextNode.parentNode.insertBefore(initBlock(newBlock, true), nextNode);
+      if (_post.content.length === index + 1) {
+        const lastNodeID = _post.content[index - 1]._id;
+        const lastNode = document.querySelector(
+          `[data-blockid="${lastNodeID}"]`
+        );
+        lastNode.parentNode.appendChild(initBlock(newBlock, true));
+      } else {
+        const nextNodeID = _post.content[index + 1]._id;
+        const nextNode = document.querySelector(
+          `[data-blockid="${nextNodeID}"]`
+        );
+        nextNode.parentNode.insertBefore(initBlock(newBlock, true), nextNode);
+      }
     }
     if (newBlock.errors.length !== 0) initEditBlock(newBlock);
   }

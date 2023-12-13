@@ -231,6 +231,7 @@ export async function remove(block) {
     const blockNode = document.querySelector(`[data-blockid="${block._id}"]`);
     if (block.errors && block.errors.length !== 0) initEditBlock(block);
     else blockNode.remove();
+    console.log(post);
   }
 }
 
@@ -307,8 +308,9 @@ export async function submitUser(user) {
 
 export async function modifyUser(user) {
   try {
-    const response = await updateUser(user, loginState.token);
-    setSignupResponse(response);
+    user._id = loginData.user._id;
+    const response = await updateUser(user, loginData.token);
+    //setSignupResponse(response);
     if (response.success) {
       updateAuthorInPosts(user);
       loginData.user = user;

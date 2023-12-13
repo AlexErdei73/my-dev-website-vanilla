@@ -3,7 +3,7 @@ import { submitLogin, logout } from "../index.js";
 import { initPosts } from "./postCards.js";
 import { posts } from "../index.js";
 import { updateSignupLinkText } from "./navigationBar.js";
-import { togglePassword } from "./signup.js";
+import { fillInUserForm, togglePassword } from "./signup.js";
 
 function getUserPosts(posts, userID) {
   return posts.filter((post) => post.author._id === userID);
@@ -44,6 +44,7 @@ export function initLogin(loginData) {
   }
   updateSignupLinkText(loginData);
   togglePassword(loginData);
+  if (loginData.success) fillInUserForm(loginData.user);
   if (!oldNode) loginNode.appendChild(node);
   else loginNode.replaceChild(node, oldNode);
 }
