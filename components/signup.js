@@ -1,11 +1,14 @@
 import { importTemp } from "../helper.js";
 import { modifyUser, submitUser } from "../index.js";
 
-export function initSignup() {
+let _loginSuccess;
+
+export function initSignup(loginData) {
+  _loginSuccess = loginData.success;
   const loginNode = document.querySelector(".signup");
   const oldNode = loginNode.childNodes[0];
   const node = importTemp(23);
-  toggleEventListener(node, false);
+  addSubmitListener(node);
   if (!oldNode) loginNode.appendChild(node);
   else loginNode.replaceChild(node, oldNode);
 }
@@ -22,69 +25,68 @@ export function togglePassword(loginData) {
     ".signup label[htmlFor='password']"
   );
   const passwordInput = document.querySelector(".signup input#password");
-  const usernameInput = document.querySelector(".signup input#username");
   if (loginData.success) {
     passwordLabel.classList.add("hidden");
     passwordInput.classList.add("hidden");
-    usernameInput.value = loginData.user.username;
+    fillInUserForm(loginData.user);
     passwordInput.value = ".";
   } else {
     passwordLabel.classList.remove("hidden");
     passwordInput.classList.remove("hidden");
-    usernameInput.value = "";
-    passwordInput.value = "";
+    deleteUserForm();
   }
 }
 
-export function toggleEventListener(node, loginSuccess) {
-  const handleSignupSubmit = function (event) {
+function addSubmitListener(node) {
+  const listener = function (event) {
+    event.preventDefault();
     const username = node.querySelector("#username").value;
     const password = node.querySelector("#password").value;
     const name = node.querySelector("#name").value;
     const jobTitle = node.querySelector("#jobTitle").value;
     const bio = node.querySelector("#bio").value;
-    event.preventDefault();
-    submitUser({
+    console.log("loginSuccess: ", _loginSuccess);
+    const user = {
       username,
       password,
       name,
       jobTitle,
       bio,
       isAdmin: false,
-    });
+    };
+    if (_loginSuccess) {
+      delete user.password;
+      modifyUser(user);
+    } else submitUser(user);
   };
 
-  const handleUserSubmit = function (event) {
-    const username = node.querySelector("#username").value;
-    const name = node.querySelector("#name").value;
-    const jobTitle = node.querySelector("#jobTitle").value;
-    const bio = node.querySelector("#bio").value;
-    event.preventDefault();
-    modifyUser({
-      username,
-      name,
-      jobTitle,
-      bio,
-      isAdmin: false,
-    });
-  };
-
-  if (loginSuccess) {
-    node.removeEventListener("submit", handleUserSubmit);
-    node.addEventListener("submit", handleSignupSubmit);
-  } else {
-    node.removeEventListener("submit", handleSignupSubmit);
-    node.addEventListener("submit", handleUserSubmit);
-  }
+  node.addEventListener("submit", listener);
 }
 
 export function fillInUserForm(user) {
-  const usernameInput = document.querySelector("#username");
-  const nameInput = document.querySelector("#name");
-  const jobTitleInput = document.querySelector("#jobTitle");
-  const bioTextarea = document.querySelector("#bio");
+  const usernameInput = document.querySelector(".signup #username");
+  const nameInput = document.querySelector(".signup #name");
+  const jobTitleInput = document.querySelector(".signup #jobTitle");
+  const bioTextarea = document.querySelector(".signup #bio");
   usernameInput.value = user.username;
   nameInput.value = user.name;
   jobTitleInput.value = user.jobTitle;
   bioTextarea.value = user.bio;
+}
+
+export function deleteUserForm() {
+  const usernameInput = document.querySelector(".signup #username");
+  const passwordInput = document.querySelector(".signup #password");
+  const nameInput = document.querySelector(".signup #name");
+  const jobTitleInput = document.querySelector(".signup #jobTitle");
+  const bioTextarea = document.querySelector(".signup #bio");
+  usernameInput.value = "";
+  passwordInput.value = "";
+  nameInput.value = "";
+  jobTitleInput.value = "";
+  bioTextarea.value = "";
+}
+
+export function setLoginSuccess(loginSuccess) {
+  _loginSuccess = loginSuccess;
 }

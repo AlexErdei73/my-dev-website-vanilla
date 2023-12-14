@@ -295,6 +295,7 @@ function handleUserErrors(user, errors) {
 export async function submitUser(user) {
   try {
     const response = await createUser(user);
+    console.log(response);
     logout();
     if (!response.success) {
       handleUserErrors(user, response.errors);
@@ -310,10 +311,11 @@ export async function modifyUser(user) {
   try {
     user._id = loginData.user._id;
     const response = await updateUser(user, loginData.token);
-    //setSignupResponse(response);
+    console.log(response);
     if (response.success) {
       updateAuthorInPosts(user);
       loginData.user = user;
+      location.href = "#login";
     }
   } catch (error) {
     handleUserErrors(user, [{ msg: error.message }]);
@@ -333,5 +335,5 @@ initModal({
 });
 const storageItem = localStorage.getItem("loginData");
 if (storageItem) loginData = JSON.parse(storageItem);
-initSignup();
+initSignup(loginData);
 showMainElement();
