@@ -145,7 +145,6 @@ getPosts()
     initAboutPost(getPost(aboutID));
     initLogin(loginData);
     initNewPost(createPost);
-    console.log(posts);
   })
   .catch((error) => openErrorDlg({ msg: error.message }));
 
@@ -231,7 +230,6 @@ export async function remove(block) {
     const blockNode = document.querySelector(`[data-blockid="${block._id}"]`);
     if (block.errors && block.errors.length !== 0) initEditBlock(block);
     else blockNode.remove();
-    console.log(post);
   }
 }
 
@@ -295,7 +293,6 @@ function handleUserErrors(user, errors) {
 export async function submitUser(user) {
   try {
     const response = await createUser(user);
-    console.log(response);
     logout();
     if (!response.success) {
       handleUserErrors(user, response.errors);
@@ -311,7 +308,6 @@ export async function modifyUser(user) {
   try {
     user._id = loginData.user._id;
     const response = await updateUser(user, loginData.token);
-    console.log(response);
     if (response.success) {
       updateAuthorInPosts(user);
       loginData.user = user;

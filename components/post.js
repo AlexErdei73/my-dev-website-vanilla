@@ -64,9 +64,7 @@ export async function insertBlock(block) {
     newBlock.errors.push({ msg: error.message });
   } finally {
     if (!newBlock._id) newBlock._id = index;
-    console.log(_post);
-    console.log(index);
-    if (index === 0) {
+    if (index === 0 && _post.content.length === 1) {
       const lastNode = document.querySelector(".post .post-title");
       lastNode.parentNode.appendChild(initBlock(newBlock, true));
     } else {

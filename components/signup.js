@@ -45,7 +45,6 @@ function addSubmitListener(node) {
     const name = node.querySelector("#name").value;
     const jobTitle = node.querySelector("#jobTitle").value;
     const bio = node.querySelector("#bio").value;
-    console.log("loginSuccess: ", _loginSuccess);
     const user = {
       username,
       password,
