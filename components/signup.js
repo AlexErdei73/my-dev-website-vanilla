@@ -21,9 +21,7 @@ export function removeErrors() {
 }
 
 export function togglePassword(loginData) {
-  const passwordLabel = document.querySelector(
-    ".signup label[htmlFor='password']"
-  );
+  const passwordLabel = document.querySelector(".signup label[for='password']");
   const passwordInput = document.querySelector(".signup input#password");
   if (loginData.success) {
     passwordLabel.classList.add("hidden");

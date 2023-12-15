@@ -29,7 +29,7 @@ function updateDOM(index) {
 }
 
 export function showMainElement() {
-  const component = window.location.hash.slice(1) || components[0];
+  const component = window.location.hash.slice(1) || components[1];
   const componentStrPieces = component.split("/");
   const index = components.indexOf(componentStrPieces[0]);
   // If it is post
