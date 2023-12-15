@@ -264,6 +264,7 @@ export function logout() {
   loginData.user.password = "";
   localStorage.removeItem("loginData");
   initLogin(loginData);
+  initPosts(getPublishedPosts());
 }
 
 function updateAuthorInPosts(author) {
