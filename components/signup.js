@@ -65,10 +65,10 @@ export function fillInUserForm(user) {
   const nameInput = document.querySelector(".signup #name");
   const jobTitleInput = document.querySelector(".signup #jobTitle");
   const bioTextarea = document.querySelector(".signup #bio");
-  usernameInput.value = user.username;
-  nameInput.value = user.name;
-  jobTitleInput.value = user.jobTitle;
-  bioTextarea.value = user.bio;
+  usernameInput.value = user.username ? user.username : "";
+  nameInput.value = user.name ? user.name : "";
+  jobTitleInput.value = user.jobTitle ? user.jobTitle : "";
+  bioTextarea.value = user.bio ? user.bio : "";
 }
 
 export function deleteUserForm() {
